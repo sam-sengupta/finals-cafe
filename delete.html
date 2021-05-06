@@ -1,0 +1,101 @@
+<html>
+<script src="library/p5.js"></script>
+<script src="library/scenemanager.js"></script>
+
+<script>
+var mgr;
+
+function preload() {
+	menuimg = loadImage("menu.jpg");
+    boximg = loadImage("box.jpg");
+    spriteimg = loadImage("sprite.png");
+}
+
+function setup()
+{
+    createCanvas(600, 500);
+
+    mgr = new SceneManager();
+
+    // Preload scenes. Preloading is normally optional
+    // ... but needed if showNextScene() is used.
+    mgr.addScene ( intro );
+    mgr.addScene ( scene1 );
+    mgr.showNextScene();
+}
+
+function draw()
+{
+    mgr.draw();
+}
+
+function mousePressed()
+{
+    mgr.handleEvent("mousePressed");
+}
+
+function keyPressed()
+{
+    // You can optionaly handle the key press at global level...
+    switch(key)
+    {
+        case '1':
+            mgr.showScene( intro );
+            break;
+        case '2':
+            mgr.showScene( scene1 );
+            break;
+    }
+    
+    // ... then dispatch via the SceneManager.
+    mgr.handleEvent("keyPressed");
+}
+
+
+// =============================================================
+// =                         BEGIN SCENES                      = 
+// =============================================================
+
+function intro() {
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#e9d7d9');
+        imageMode(CENTER);
+        image(menuimg, windowWidth/2, windowHeight/2, 200, 600);
+        image(boximg, windowWidth/2-250, windowHeight/2+100, 200, 200);
+        image(spriteimg, windowWidth/2-250, windowHeight/2, 200, 200);
+	}
+
+    this.draw = function() {
+        // background('#e9d7d9');
+    }
+
+    this.mousePressed = function() {
+		this.sceneManager.showNextScene();
+    }
+}
+
+function scene1() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#e9d7d9');
+        imageMode(CENTER);
+        image(menuimg, windowWidth/2, windowHeight/2, 200, 600);
+        image(boximg, windowWidth/2-250, windowHeight/2+100, 200, 200);
+        image(spriteimg, windowWidth/2-250, windowHeight/2, 200, 200);
+	}
+	
+	this.draw = function() {
+        textSize(35);
+		textFont("Times New Roman");
+        textSize(72);
+		text("hello uwu testing", width/2, height/2);
+	}
+	
+	this.mousePressed = function() {
+		this.sceneManager.showNextScene();
+        // this.sceneManager.showScene(scene2);
+	}
+}
+</script>
+</html>

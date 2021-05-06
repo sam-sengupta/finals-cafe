@@ -71,13 +71,14 @@
 
 
 
-var music;
-var main_url = "https://foodish-api.herokuapp.com/images/";
+// var music;
+// var main_url = "https://foodish-api.herokuapp.com/images/";
+var mngr;
 
 function preload() {
 	// bgmusic = loadSound("hello.mp3"); // for bg music
 	menuimg = loadImage("menu.jpg");
-    boximg = loadImage("box.jpg");
+    boximg = loadImage("box.png");
     spriteimg = loadImage("sprite.png");
 }
 
@@ -86,25 +87,25 @@ function setup() {
 	
 	// bgmusic.play();
 
-    var mgr = new SceneManager();
+    mngr = new SceneManager();
 
-    mgr.addScene (intro);
-    mgr.addScene (scene1);
+    mngr.addScene (intro);
+    mngr.addScene (scene1);
     // mgr.addScene (scene2);
 	// mgr.addScene (scene3);
 	// mgr.addScene (scene4);
 	// mgr.addScene (scene5);
 	// mgr.addScene (scene6);
 	
-    mgr.showNextScene();
+    mngr.showNextScene();
 }
 
 function draw() {
-    mgr.draw();
+    mngr.draw();
 }
 
 function mousePressed() {
-    mgr.handleEvent("mousePressed");
+    mngr.handleEvent("mousePressed");
 }
 
 function intro() {
@@ -118,7 +119,7 @@ function intro() {
 	}
 
     this.draw = function() {
-        // background('#e9d7d9');
+        console.log("working UwU")
     }
 
     this.mousePressed = function() {
@@ -147,6 +148,5 @@ function scene1() {
 		this.sceneManager.showNextScene();
         // this.sceneManager.showScene(scene2);
 	}
-	
 }
 
