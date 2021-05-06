@@ -113,9 +113,9 @@ function intro() {
 		createCanvas(windowWidth, windowHeight);
         background('#e9d7d9');
         imageMode(CENTER);
-        image(menuimg, windowWidth/2, windowHeight/2, 200, 600);
+        image(menuimg, windowWidth/2, windowHeight/2, 500, 700);
         image(boximg, windowWidth/2-250, windowHeight/2+100, 200, 200);
-        image(spriteimg, windowWidth/2-250, windowHeight/2, 200, 200);
+        image(spriteimg, windowWidth/2-250, windowHeight/2, 100, 100);
 	}
 
     this.draw = function() {
