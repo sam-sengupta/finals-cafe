@@ -119,11 +119,12 @@ function intro() {
 	}
 
     this.draw = function() {
-        console.log("working UwU")
+        // console.log("working UwU")
     }
 
     this.mousePressed = function() {
-		this.sceneManager.showNextScene();
+		// this.sceneManager.showNextScene();
+        this.sceneManager.showScene(scene1);
     }
 }
 
