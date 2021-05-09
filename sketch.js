@@ -76,10 +76,12 @@ var main_url = "https://foodish-api.herokuapp.com/images/";
 var mngr;
 var menuitem = "";
 var randomnbr;
+var rains = [];
+var fires = [];
 // ["biryani", "butter-chicken", "dessert", "pasta", "pizza", "rice", "samosa", "burger", ]
 
 function preload() {
-	// bgmusic = loadSound("hello.mp3"); // for bg music
+	// bgmusic = loadSound("hello.mp3");
 	openm = loadImage("open.jpg");
     closem = loadImage("close.jpg");
     backm = loadImage("back.jpg");
@@ -92,17 +94,19 @@ function preload() {
     threed = loadImage("3d.png");
     threead = loadImage("3ad.png");
     threebd = loadImage("3bd.png");
-    one = loadImage("1.png");
-    two = loadImage("2.png");
-    three = loadImage("3.png");
-    four = loadImage("4.png");
-    five = loadImage("5.png");
-    six = loadImage("6.png");
-    seven = loadImage("7.png");
-    eight = loadImage("8.png");
-    yes = loadImage("yes.png");
-    no = loadImage("no.png");
-    leave = loadImage("leave.png");
+    rain = loadImage("rain.gif");
+    fire = loadImage("fire.gif");
+    // one = loadImage("1.png");
+    // two = loadImage("2.png");
+    // three = loadImage("3.png");
+    // four = loadImage("4.png");
+    // five = loadImage("5.png");
+    // six = loadImage("6.png");
+    // seven = loadImage("7.png");
+    // eight = loadImage("8.png");
+    // yes = loadImage("yes.png");
+    // no = loadImage("no.png");
+    // leave = loadImage("leave.png");
 }
 
 function setup() {
@@ -116,11 +120,16 @@ function setup() {
 
     mngr.addScene (intro);
     mngr.addScene (scene1);
-    mngr.addScene (biryani);
 	mngr.addScene (samosa);
-	// mngr.addScene (scene4);
-	// mngr.addScene (scene5);
-	// mngr.addScene (scene6);
+    mngr.addScene (pizza);
+    mngr.addScene (pasta);
+    mngr.addScene (burger);
+    mngr.addScene (butter);
+    mngr.addScene (rice);
+    mngr.addScene (biryani);
+    mngr.addScene (dessert);
+	mngr.addScene (sadend);
+	mngr.addScene (happyend);
 	
     mngr.showNextScene();
 }
@@ -140,8 +149,8 @@ function keyPressed() {
 function intro() {
 	this.setup = function() {
         image(closem, windowWidth/2, windowHeight/2, 500, 700);
-        image(oned, windowWidth/2-250, windowHeight/2+100, 200, 200);
-        image(smiles, windowWidth/2-250, windowHeight/2, 100, 100);
+        image(oned, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(smiles, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
 	}
 
     this.draw = function() {
@@ -157,23 +166,19 @@ function intro() {
 function scene1() {	
 	this.setup = function() {
 		createCanvas(windowWidth, windowHeight);
-        background('#e9d7d9');
+        background('#ece6e6');
         imageMode(CENTER);
         image(openm, windowWidth/2, windowHeight/2, 500, 700);
-        image(twod, windowWidth/2-250, windowHeight/2+100, 200, 200);
-        image(smiles, windowWidth/2-250, windowHeight/2, 100, 100);
-        image(one, windowWidth/2, windowHeight/2 - 250, 200, 50);
-        image(two, windowWidth/2, windowHeight/2 - 200, 200, 50);
-        image(three, windowWidth/2, windowHeight/2 - 150, 200, 50);
-        image(four, windowWidth/2, windowHeight/2 - 100, 200, 50);
-        image(five, windowWidth/2, windowHeight/2 + 100, 200, 50);
-        image(six, windowWidth/2, windowHeight/2 + 150, 200, 50);
-        image(seven, windowWidth/2, windowHeight/2 + 200, 200, 50);
-        image(eight, windowWidth/2, windowHeight/2 + 250, 200, 50);
+        image(twod, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(smiles, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
 	}
 	
 	this.draw = function() {
-        // console.log("working UwU")
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press the number of your", width/2 + 300, height/2 + 200);
+        text("picking on your keyboard.", width/2 + 300, height/2 + 225);
 	}
 	
 	this.keyPressed = function() {
@@ -181,32 +186,245 @@ function scene1() {
             case '1':
                 mngr.showScene(samosa);
                 break;
+            case '2':
+                mngr.showScene(pizza);
+                break;
+            case '3':
+                mngr.showScene(pasta);
+                break;
+            case '4':
+                mngr.showScene(burger);
+                break;
+            case '5':
+                mngr.showScene(butter);
+                break;
+            case '6':
+                mngr.showScene(rice);
+                break;
             case '7':
                 mngr.showScene(biryani);
+                break;
+            case '8':
+                mngr.showScene(dessert);
                 break;
         }
 	}
 }
+
 function samosa() {	
 	this.setup = function() {
 		createCanvas(windowWidth, windowHeight);
-        background('#e9d7d9');
+        background('#ece6e6');
         imageMode(CENTER);
-        image(openm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2-250, windowHeight/2+100, 200, 200);
-        image(smiles, windowWidth/2-250, windowHeight/2, 100, 100);
+        image(backm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
         menuitem = "samosa";
         randomnbr = Math.floor(Math.random() * 23);
         imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
         displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-        image(yes, windowWidth/2 + 250, windowHeight/2 - 200, 50, 50);
-        image(no, windowWidth/2 + 250, windowHeight/2 - 300, 50, 50);
 	}
 	
 	this.draw = function() {
         displayimg.display();
         displayimg.move();
         displayimg.stop();
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
+        text("and 'N' for no.", width/2 + 300, height/2 + 225);
+
+	}
+	
+	this.keyPressed = function() {
+        switch(key) {
+            case 'Y':
+                mngr.showScene(sadend);
+                break;
+            case 'N':
+                mngr.showScene(happyend);
+                break;
+        }
+	}
+}
+
+function pizza() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#ece6e6');
+        imageMode(CENTER);
+        image(backm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
+        menuitem = "pizza";
+        randomnbr = Math.floor(Math.random() * 85);
+        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
+        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
+	}
+	
+	this.draw = function() {
+        displayimg.display();
+        displayimg.move();
+        displayimg.stop();
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
+        text("and 'N' for no.", width/2 + 300, height/2 + 225);
+
+	}
+	
+	this.keyPressed = function() {
+        switch(key) {
+            case 'Y':
+                mngr.showScene(sadend);
+                break;
+            case 'N':
+                mngr.showScene(happyend);
+                break;
+        }
+	}
+}
+
+function pasta() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#ece6e6');
+        imageMode(CENTER);
+        image(backm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
+        menuitem = "pasta";
+        randomnbr = Math.floor(Math.random() * 35);
+        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
+        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
+	}
+	
+	this.draw = function() {
+        displayimg.display();
+        displayimg.move();
+        displayimg.stop();
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
+        text("and 'N' for no.", width/2 + 300, height/2 + 225);
+
+	}
+	
+	this.keyPressed = function() {
+        switch(key) {
+            case 'Y':
+                mngr.showScene(sadend);
+                break;
+            case 'N':
+                mngr.showScene(happyend);
+                break;
+        }
+	}
+}
+
+function burger() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#ece6e6');
+        imageMode(CENTER);
+        image(backm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
+        menuitem = "burger";
+        randomnbr = Math.floor(Math.random() * 88);
+        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
+        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
+	}
+	
+	this.draw = function() {
+        displayimg.display();
+        displayimg.move();
+        displayimg.stop();
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
+        text("and 'N' for no.", width/2 + 300, height/2 + 225);
+
+	}
+	
+	this.keyPressed = function() {
+        switch(key) {
+            case 'Y':
+                mngr.showScene(sadend);
+                break;
+            case 'N':
+                mngr.showScene(happyend);
+                break;
+        }
+	}
+}
+
+function butter() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#ece6e6');
+        imageMode(CENTER);
+        image(backm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
+        menuitem = "butter-chicken";
+        randomnbr = Math.floor(Math.random() * 23);
+        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
+        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
+	}
+	
+	this.draw = function() {
+        displayimg.display();
+        displayimg.move();
+        displayimg.stop();
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
+        text("and 'N' for no.", width/2 + 300, height/2 + 225);
+
+	}
+	
+	this.keyPressed = function() {
+        switch(key) {
+            case 'Y':
+                mngr.showScene(sadend);
+                break;
+            case 'N':
+                mngr.showScene(happyend);
+                break;
+        }
+	}
+}
+
+function rice() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#ece6e6');
+        imageMode(CENTER);
+        image(backm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
+        menuitem = "rice";
+        randomnbr = Math.floor(Math.random() * 36);
+        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
+        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
+	}
+	
+	this.draw = function() {
+        displayimg.display();
+        displayimg.move();
+        displayimg.stop();
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
+        text("and 'N' for no.", width/2 + 300, height/2 + 225);
+
 	}
 	
 	this.keyPressed = function() {
@@ -224,23 +442,28 @@ function samosa() {
 function biryani() {	
 	this.setup = function() {
 		createCanvas(windowWidth, windowHeight);
-        background('#e9d7d9');
+        background('#ece6e6');
         imageMode(CENTER);
-        image(openm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2-250, windowHeight/2+100, 200, 200);
-        image(smiles, windowWidth/2-250, windowHeight/2, 100, 100);
+        image(backm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
         menuitem = "biryani";
         randomnbr = Math.floor(Math.random() * 83);
         imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
         displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-        image(yes, windowWidth/2 + 250, windowHeight/2 - 200, 50, 50);
-        image(no, windowWidth/2 + 250, windowHeight/2 - 300, 50, 50);
+        // image(yes, windowWidth/2 + 250, windowHeight/2 - 200, 50, 50);
+        // image(no, windowWidth/2 + 250, windowHeight/2 - 300, 50, 50);
 	}
 	
 	this.draw = function() {
         displayimg.display();
         displayimg.move();
         displayimg.stop();
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
+        text("and 'N' for no.", width/2 + 300, height/2 + 225);
 	}
 	
 	this.keyPressed = function() {
@@ -255,6 +478,92 @@ function biryani() {
 	}
 }
 
+function dessert() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#ece6e6');
+        imageMode(CENTER);
+        image(backm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
+        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
+        menuitem = "dessert";
+        randomnbr = Math.floor(Math.random() * 37);
+        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
+        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
+	}
+	
+	this.draw = function() {
+        displayimg.display();
+        displayimg.move();
+        displayimg.stop();
+        textSize(30);
+		textFont("Times New Roman");
+        fill('#9c8383');
+		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
+        text("and 'N' for no.", width/2 + 300, height/2 + 225);
+
+	}
+	
+	this.keyPressed = function() {
+        switch(key) {
+            case 'Y':
+                mngr.showScene(sadend);
+                break;
+            case 'N':
+                mngr.showScene(happyend);
+                break;
+        }
+	}
+}
+
+function sadend() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        imageMode(CENTER);
+        for (i = 0; i < 30; i++) {
+            raining = new falling(rain, random(width), random(height));
+            rains.push(raining);
+        }
+	}
+	this.draw = function() {
+        background('#9c8383');
+        image(threead, windowWidth/2 - 200, windowHeight/2 + 20, 300, 300);
+        image(angrys, windowWidth/2, windowHeight/2 + 200, 200, 200);
+        for (i = 0; i < rains.length; i++) {
+            rains[i].display();
+            rains[i].move();
+            rains[i].re();
+        }
+	}
+	this.mousePressed = function() {
+        this.sceneManager.showScene(intro);
+    }
+}
+
+function happyend() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        imageMode(CENTER);
+        for (i = 0; i < 30; i++) {
+            fireworks = new falling(fire, random(width), random(height));
+            fires.push(fireworks);
+        }
+	}
+	this.draw = function() {
+        background('#ece6e6');
+        image(threebd, windowWidth/2 - 200, windowHeight/2 + 20, 300, 300);
+        image(bigsmiles, windowWidth/2, windowHeight/2 + 200, 200, 200);
+        for (i = 0; i < fires.length; i++) {
+            fires[i].display();
+            fires[i].move();
+            fires[i].re();
+        }
+	}
+	this.mousePressed = function() {
+        this.sceneManager.showScene(intro);
+    }
+}
+
 
 
 
@@ -264,17 +573,22 @@ function biryani() {
 
 
 class falling {
-    constructor(x, y) {
-      this.x = x;
-      this.y = y;
-      this.xSpeed = 10;
-      this.ySpeed = 2;
+    constructor(item, x, y) {
+        this.name = item;
+        this.x = x;
+        this.y = y;
+        this.speed = 5;
     }
     display() {
-      image(gameballoon, this.x, this.y, 150, 200);
+        image(this.name, this.x, this.y, 200, 200);
     }
     move() {
-      this.y += this.ySpeed;
+        this.y += this.speed;
+    }
+    re() {
+        if (this.y > height) {
+            this.y *= -1;
+        }
     }
 }
 
