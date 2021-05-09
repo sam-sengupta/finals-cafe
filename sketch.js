@@ -1,76 +1,3 @@
-// var product_data;
-// var input;
-// var main_url = "https://makeup-api.herokuapp.com/api/v1/products.json?product_type="
-// var productName = "blush";
-// var products = [];
-// var brandName;
-// //var brandcounter = 0;
-
-// function preload(){
-//   var url = main_url + productName;
-//   loadJSON(url, getProduct);
-// }
-
-// function getProduct(product){
-//   product_data = product;
-// }
-
-// function setup() {
-//     createCanvas(windowWidth, windowHeight);
-//     var button = select('button');
-//     input = select('#product');
-//     button.mousePressed(updateBrand);
-// }
-
-// function updateBrand(){
-//     finalUrlPart = '' + input.value();
-//     var url = main_url + finalUrlPart;
-//     loadJSON(url, getProduct);
-//     products = [];
-//     brandcounter = 0;
-//     products_len = product_data.length;
-//     for (var i = 0; i < products_len - 1; i++) {
-//         brandName = product_data[i].brand;
-//         products.push(new writingText(brandName));
-//         //brandcounter++;
-//     }
-// }
-
-// function draw() {
-//     background('#FAA1AC');
-//     for (var i = 0; i < products.length; i++) {
-//         products[i].warping();
-//         products[i].writing();
-//     }
-// }
-
-// class writingText{
-//     constructor(productType) {
-//         this.string = productType;
-//         this.x = random(0, width);
-//         this.y = random(0, height);
-//         this.speedY = random(-3, 3);
-//         this.speedX = random(-3, 3);
-//     }
-//     warping() {
-//         this.x += this.speedX;
-// 		if (this.x > windowWidth || this.x < 0){
-//             this.speedX *= -1;
-//         }
-//         this.y += this.speedY;
-// 		if (this.y > windowHeight || this.y < 0){
-//             this.speedY *= -1;
-//         }
-//     }
-//     writing() {
-//         textSize(25);
-//         fill('white');
-//         text('' + this.string, this.x, this.y);
-//     }  
-// }
-
-
-
 // var music;
 var main_url = "https://foodish-api.herokuapp.com/images/";
 var mngr;
@@ -78,7 +5,6 @@ var menuitem = "";
 var randomnbr;
 var rains = [];
 var fires = [];
-// ["biryani", "butter-chicken", "dessert", "pasta", "pizza", "rice", "samosa", "burger", ]
 
 function preload() {
 	// bgmusic = loadSound("hello.mp3");
@@ -96,41 +22,19 @@ function preload() {
     threebd = loadImage("3bd.png");
     rain = loadImage("rain.gif");
     fire = loadImage("fire.gif");
-    // one = loadImage("1.png");
-    // two = loadImage("2.png");
-    // three = loadImage("3.png");
-    // four = loadImage("4.png");
-    // five = loadImage("5.png");
-    // six = loadImage("6.png");
-    // seven = loadImage("7.png");
-    // eight = loadImage("8.png");
-    // yes = loadImage("yes.png");
-    // no = loadImage("no.png");
-    // leave = loadImage("leave.png");
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background('#ece6e6');
     imageMode(CENTER);
-	
 	// bgmusic.play();
-
     mngr = new SceneManager();
-
     mngr.addScene (intro);
     mngr.addScene (scene1);
-	mngr.addScene (samosa);
-    mngr.addScene (pizza);
-    mngr.addScene (pasta);
-    mngr.addScene (burger);
-    mngr.addScene (butter);
-    mngr.addScene (rice);
-    mngr.addScene (biryani);
-    mngr.addScene (dessert);
+    mngr.addScene (food);
 	mngr.addScene (sadend);
 	mngr.addScene (happyend);
-	
     mngr.showNextScene();
 }
 
@@ -153,12 +57,9 @@ function intro() {
         image(smiles, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
 	}
 
-    this.draw = function() {
-        // console.log("working UwU")
-    }
+    this.draw = function() {}
 
     this.mousePressed = function() {
-		// this.sceneManager.showNextScene();
         this.sceneManager.showScene(scene1);
     }
 }
@@ -184,34 +85,50 @@ function scene1() {
 	this.keyPressed = function() {
         switch(key) {
             case '1':
-                mngr.showScene(samosa);
+                mngr.showScene(food);
+                menuitem = "samosa";
+                randomnbr = Math.floor(Math.random() * 23);
                 break;
             case '2':
-                mngr.showScene(pizza);
+                mngr.showScene(food);
+                menuitem = "pizza";
+                randomnbr = Math.floor(Math.random() * 85);
                 break;
             case '3':
-                mngr.showScene(pasta);
+                mngr.showScene(food);
+                menuitem = "pasta";
+                randomnbr = Math.floor(Math.random() * 35);
                 break;
             case '4':
-                mngr.showScene(burger);
+                mngr.showScene(food);
+                menuitem = "burger";
+                randomnbr = Math.floor(Math.random() * 87);
                 break;
             case '5':
-                mngr.showScene(butter);
+                mngr.showScene(food);
+                menuitem = "butter-chicken";
+                randomnbr = Math.floor(Math.random() * 23);
                 break;
             case '6':
-                mngr.showScene(rice);
+                mngr.showScene(food);
+                menuitem = "rice";
+                randomnbr = Math.floor(Math.random() * 36);
                 break;
             case '7':
-                mngr.showScene(biryani);
+                mngr.showScene(food);
+                menuitem = "biryani";
+                randomnbr = Math.floor(Math.random() * 83);
                 break;
             case '8':
-                mngr.showScene(dessert);
+                mngr.showScene(food);
+                menuitem = "dessert";
+                randomnbr = Math.floor(Math.random() * 37);
                 break;
         }
 	}
 }
 
-function samosa() {	
+function food() {	
 	this.setup = function() {
 		createCanvas(windowWidth, windowHeight);
         background('#ece6e6');
@@ -219,275 +136,6 @@ function samosa() {
         image(backm, windowWidth/2, windowHeight/2, 500, 700);
         image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
         image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
-        menuitem = "samosa";
-        randomnbr = Math.floor(Math.random() * 23);
-        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
-        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-	}
-	
-	this.draw = function() {
-        displayimg.display();
-        displayimg.move();
-        displayimg.stop();
-        textSize(30);
-		textFont("Times New Roman");
-        fill('#9c8383');
-		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
-        text("and 'N' for no.", width/2 + 300, height/2 + 225);
-
-	}
-	
-	this.keyPressed = function() {
-        switch(key) {
-            case 'Y':
-                mngr.showScene(sadend);
-                break;
-            case 'N':
-                mngr.showScene(happyend);
-                break;
-        }
-	}
-}
-
-function pizza() {	
-	this.setup = function() {
-		createCanvas(windowWidth, windowHeight);
-        background('#ece6e6');
-        imageMode(CENTER);
-        image(backm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
-        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
-        menuitem = "pizza";
-        randomnbr = Math.floor(Math.random() * 85);
-        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
-        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-	}
-	
-	this.draw = function() {
-        displayimg.display();
-        displayimg.move();
-        displayimg.stop();
-        textSize(30);
-		textFont("Times New Roman");
-        fill('#9c8383');
-		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
-        text("and 'N' for no.", width/2 + 300, height/2 + 225);
-
-	}
-	
-	this.keyPressed = function() {
-        switch(key) {
-            case 'Y':
-                mngr.showScene(sadend);
-                break;
-            case 'N':
-                mngr.showScene(happyend);
-                break;
-        }
-	}
-}
-
-function pasta() {	
-	this.setup = function() {
-		createCanvas(windowWidth, windowHeight);
-        background('#ece6e6');
-        imageMode(CENTER);
-        image(backm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
-        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
-        menuitem = "pasta";
-        randomnbr = Math.floor(Math.random() * 35);
-        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
-        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-	}
-	
-	this.draw = function() {
-        displayimg.display();
-        displayimg.move();
-        displayimg.stop();
-        textSize(30);
-		textFont("Times New Roman");
-        fill('#9c8383');
-		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
-        text("and 'N' for no.", width/2 + 300, height/2 + 225);
-
-	}
-	
-	this.keyPressed = function() {
-        switch(key) {
-            case 'Y':
-                mngr.showScene(sadend);
-                break;
-            case 'N':
-                mngr.showScene(happyend);
-                break;
-        }
-	}
-}
-
-function burger() {	
-	this.setup = function() {
-		createCanvas(windowWidth, windowHeight);
-        background('#ece6e6');
-        imageMode(CENTER);
-        image(backm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
-        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
-        menuitem = "burger";
-        randomnbr = Math.floor(Math.random() * 88);
-        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
-        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-	}
-	
-	this.draw = function() {
-        displayimg.display();
-        displayimg.move();
-        displayimg.stop();
-        textSize(30);
-		textFont("Times New Roman");
-        fill('#9c8383');
-		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
-        text("and 'N' for no.", width/2 + 300, height/2 + 225);
-
-	}
-	
-	this.keyPressed = function() {
-        switch(key) {
-            case 'Y':
-                mngr.showScene(sadend);
-                break;
-            case 'N':
-                mngr.showScene(happyend);
-                break;
-        }
-	}
-}
-
-function butter() {	
-	this.setup = function() {
-		createCanvas(windowWidth, windowHeight);
-        background('#ece6e6');
-        imageMode(CENTER);
-        image(backm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
-        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
-        menuitem = "butter-chicken";
-        randomnbr = Math.floor(Math.random() * 23);
-        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
-        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-	}
-	
-	this.draw = function() {
-        displayimg.display();
-        displayimg.move();
-        displayimg.stop();
-        textSize(30);
-		textFont("Times New Roman");
-        fill('#9c8383');
-		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
-        text("and 'N' for no.", width/2 + 300, height/2 + 225);
-
-	}
-	
-	this.keyPressed = function() {
-        switch(key) {
-            case 'Y':
-                mngr.showScene(sadend);
-                break;
-            case 'N':
-                mngr.showScene(happyend);
-                break;
-        }
-	}
-}
-
-function rice() {	
-	this.setup = function() {
-		createCanvas(windowWidth, windowHeight);
-        background('#ece6e6');
-        imageMode(CENTER);
-        image(backm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
-        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
-        menuitem = "rice";
-        randomnbr = Math.floor(Math.random() * 36);
-        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
-        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-	}
-	
-	this.draw = function() {
-        displayimg.display();
-        displayimg.move();
-        displayimg.stop();
-        textSize(30);
-		textFont("Times New Roman");
-        fill('#9c8383');
-		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
-        text("and 'N' for no.", width/2 + 300, height/2 + 225);
-
-	}
-	
-	this.keyPressed = function() {
-        switch(key) {
-            case 'Y':
-                mngr.showScene(sadend);
-                break;
-            case 'N':
-                mngr.showScene(happyend);
-                break;
-        }
-	}
-}
-
-function biryani() {	
-	this.setup = function() {
-		createCanvas(windowWidth, windowHeight);
-        background('#ece6e6');
-        imageMode(CENTER);
-        image(backm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
-        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
-        menuitem = "biryani";
-        randomnbr = Math.floor(Math.random() * 83);
-        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
-        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
-        // image(yes, windowWidth/2 + 250, windowHeight/2 - 200, 50, 50);
-        // image(no, windowWidth/2 + 250, windowHeight/2 - 300, 50, 50);
-	}
-	
-	this.draw = function() {
-        displayimg.display();
-        displayimg.move();
-        displayimg.stop();
-        textSize(30);
-		textFont("Times New Roman");
-        fill('#9c8383');
-		text("Press 'Y' for yes", width/2 + 300, height/2 + 200);
-        text("and 'N' for no.", width/2 + 300, height/2 + 225);
-	}
-	
-	this.keyPressed = function() {
-        switch(key) {
-            case 'Y':
-                mngr.showScene(sadend);
-                break;
-            case 'N':
-                mngr.showScene(happyend);
-                break;
-        }
-	}
-}
-
-function dessert() {	
-	this.setup = function() {
-		createCanvas(windowWidth, windowHeight);
-        background('#ece6e6');
-        imageMode(CENTER);
-        image(backm, windowWidth/2, windowHeight/2, 500, 700);
-        image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
-        image(surprises, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
-        menuitem = "dessert";
-        randomnbr = Math.floor(Math.random() * 37);
         imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
         displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
 	}
@@ -563,14 +211,6 @@ function happyend() {
         this.sceneManager.showScene(intro);
     }
 }
-
-
-
-
-
-
-
-
 
 class falling {
     constructor(item, x, y) {
