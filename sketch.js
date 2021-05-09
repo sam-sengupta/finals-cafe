@@ -10,7 +10,7 @@ var fires = [];
 // var fw;
 
 function preload() {
-	// bgmusic = loadSound("bg.mp3");
+	// bgmusic = loadSound("bg.ogg");
     // speaking = loadSound("speaking.mp3");
     // thunder = loadSound("thunder.mp3");
     // fw = loadSound("fw.mp3");
