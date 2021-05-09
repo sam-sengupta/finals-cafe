@@ -72,18 +72,43 @@
 
 
 // var music;
-// var main_url = "https://foodish-api.herokuapp.com/images/";
+var main_url = "https://foodish-api.herokuapp.com/images/";
 var mngr;
+var menuitem = "";
+var randomnbr;
+// ["biryani", "butter-chicken", "dessert", "pasta", "pizza", "rice", "samosa", "burger", ]
 
 function preload() {
 	// bgmusic = loadSound("hello.mp3"); // for bg music
-	menuimg = loadImage("menu.jpg");
-    boximg = loadImage("box.png");
-    spriteimg = loadImage("sprite.png");
+	openm = loadImage("open.jpg");
+    closem = loadImage("close.jpg");
+    backm = loadImage("back.jpg");
+    smiles = loadImage("smile.png");
+    bigsmiles = loadImage("bigsmile.png");
+    angrys = loadImage("angry.png");
+    surprises = loadImage("surprise.png");
+    oned = loadImage("1d.png");
+    twod = loadImage("2d.png");
+    threed = loadImage("3d.png");
+    threead = loadImage("3ad.png");
+    threebd = loadImage("3bd.png");
+    one = loadImage("1.png");
+    two = loadImage("2.png");
+    three = loadImage("3.png");
+    four = loadImage("4.png");
+    five = loadImage("5.png");
+    six = loadImage("6.png");
+    seven = loadImage("7.png");
+    eight = loadImage("8.png");
+    yes = loadImage("yes.png");
+    no = loadImage("no.png");
+    leave = loadImage("leave.png");
 }
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    background('#ece6e6');
+    imageMode(CENTER);
 	
 	// bgmusic.play();
 
@@ -91,11 +116,11 @@ function setup() {
 
     mngr.addScene (intro);
     mngr.addScene (scene1);
-    // mgr.addScene (scene2);
-	// mgr.addScene (scene3);
-	// mgr.addScene (scene4);
-	// mgr.addScene (scene5);
-	// mgr.addScene (scene6);
+    mngr.addScene (biryani);
+	mngr.addScene (samosa);
+	// mngr.addScene (scene4);
+	// mngr.addScene (scene5);
+	// mngr.addScene (scene6);
 	
     mngr.showNextScene();
 }
@@ -108,14 +133,15 @@ function mousePressed() {
     mngr.handleEvent("mousePressed");
 }
 
+function keyPressed() {
+    mngr.handleEvent("keyPressed");
+}
+
 function intro() {
 	this.setup = function() {
-		createCanvas(windowWidth, windowHeight);
-        background('#e9d7d9');
-        imageMode(CENTER);
-        image(menuimg, windowWidth/2, windowHeight/2, 500, 700);
-        image(boximg, windowWidth/2-250, windowHeight/2+100, 200, 200);
-        image(spriteimg, windowWidth/2-250, windowHeight/2, 100, 100);
+        image(closem, windowWidth/2, windowHeight/2, 500, 700);
+        image(oned, windowWidth/2-250, windowHeight/2+100, 200, 200);
+        image(smiles, windowWidth/2-250, windowHeight/2, 100, 100);
 	}
 
     this.draw = function() {
@@ -133,21 +159,146 @@ function scene1() {
 		createCanvas(windowWidth, windowHeight);
         background('#e9d7d9');
         imageMode(CENTER);
-        image(menuimg, windowWidth/2, windowHeight/2, 200, 600);
-        image(boximg, windowWidth/2-250, windowHeight/2+100, 200, 200);
-        image(spriteimg, windowWidth/2-250, windowHeight/2, 200, 200);
+        image(openm, windowWidth/2, windowHeight/2, 500, 700);
+        image(twod, windowWidth/2-250, windowHeight/2+100, 200, 200);
+        image(smiles, windowWidth/2-250, windowHeight/2, 100, 100);
+        image(one, windowWidth/2, windowHeight/2 - 250, 200, 50);
+        image(two, windowWidth/2, windowHeight/2 - 200, 200, 50);
+        image(three, windowWidth/2, windowHeight/2 - 150, 200, 50);
+        image(four, windowWidth/2, windowHeight/2 - 100, 200, 50);
+        image(five, windowWidth/2, windowHeight/2 + 100, 200, 50);
+        image(six, windowWidth/2, windowHeight/2 + 150, 200, 50);
+        image(seven, windowWidth/2, windowHeight/2 + 200, 200, 50);
+        image(eight, windowWidth/2, windowHeight/2 + 250, 200, 50);
 	}
 	
 	this.draw = function() {
-        textSize(35);
-		textFont("Times New Roman");
-        textSize(72);
-		text("hello uwu testing", width/2, height/2);
+        // console.log("working UwU")
 	}
 	
-	this.mousePressed = function() {
-		this.sceneManager.showNextScene();
-        // this.sceneManager.showScene(scene2);
+	this.keyPressed = function() {
+        switch(key) {
+            case '1':
+                mngr.showScene(samosa);
+                break;
+            case '7':
+                mngr.showScene(biryani);
+                break;
+        }
+	}
+}
+function samosa() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#e9d7d9');
+        imageMode(CENTER);
+        image(openm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2-250, windowHeight/2+100, 200, 200);
+        image(smiles, windowWidth/2-250, windowHeight/2, 100, 100);
+        menuitem = "samosa";
+        randomnbr = Math.floor(Math.random() * 23);
+        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
+        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
+        image(yes, windowWidth/2 + 250, windowHeight/2 - 200, 50, 50);
+        image(no, windowWidth/2 + 250, windowHeight/2 - 300, 50, 50);
+	}
+	
+	this.draw = function() {
+        displayimg.display();
+        displayimg.move();
+        displayimg.stop();
+	}
+	
+	this.keyPressed = function() {
+        switch(key) {
+            case 'Y':
+                mngr.showScene(sadend);
+                break;
+            case 'N':
+                mngr.showScene(happyend);
+                break;
+        }
 	}
 }
 
+function biryani() {	
+	this.setup = function() {
+		createCanvas(windowWidth, windowHeight);
+        background('#e9d7d9');
+        imageMode(CENTER);
+        image(openm, windowWidth/2, windowHeight/2, 500, 700);
+        image(threed, windowWidth/2-250, windowHeight/2+100, 200, 200);
+        image(smiles, windowWidth/2-250, windowHeight/2, 100, 100);
+        menuitem = "biryani";
+        randomnbr = Math.floor(Math.random() * 83);
+        imgurl = loadImage(main_url + menuitem + '/' + menuitem + randomnbr + '.jpg')
+        displayimg = new imgzoom(imgurl, windowWidth/2, windowHeight/2);
+        image(yes, windowWidth/2 + 250, windowHeight/2 - 200, 50, 50);
+        image(no, windowWidth/2 + 250, windowHeight/2 - 300, 50, 50);
+	}
+	
+	this.draw = function() {
+        displayimg.display();
+        displayimg.move();
+        displayimg.stop();
+	}
+	
+	this.keyPressed = function() {
+        switch(key) {
+            case 'Y':
+                mngr.showScene(sadend);
+                break;
+            case 'N':
+                mngr.showScene(happyend);
+                break;
+        }
+	}
+}
+
+
+
+
+
+
+
+
+
+class falling {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.xSpeed = 10;
+      this.ySpeed = 2;
+    }
+    display() {
+      image(gameballoon, this.x, this.y, 150, 200);
+    }
+    move() {
+      this.y += this.ySpeed;
+    }
+}
+
+class imgzoom {
+    constructor(item, x, y) {
+        this.name = item;
+        this.x = x;
+        this.y = y;
+        this.inx = 10;
+        this.iny = 5;
+        this.xspeed = 0.3;
+        this.yspeed = 0.1;
+    }
+    display() {
+        image(this.name, this.x, this.y, this.inx, this.iny*2);
+    }
+    move() {
+        this.inx += this.xspeed;
+        this.iny += this.yspeed;
+    }
+    stop() {
+        if (this.inx > 500 || this.iny > 500) {
+            this.xspeed = 0;
+            this.yspeed = 0;
+        }
+    }
+}
