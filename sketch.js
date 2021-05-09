@@ -1,13 +1,19 @@
-// var music;
 var main_url = "https://foodish-api.herokuapp.com/images/";
 var mngr;
 var menuitem = "";
 var randomnbr;
 var rains = [];
 var fires = [];
+// var bgmusic;
+// var speaking;
+// var thunder;
+// var fw;
 
 function preload() {
-	// bgmusic = loadSound("hello.mp3");
+	// bgmusic = loadSound("bg.mp3");
+    // speaking = loadSound("speaking.mp3");
+    // thunder = loadSound("thunder.mp3");
+    // fw = loadSound("fw.mp3");
 	openm = loadImage("open.jpg");
     closem = loadImage("close.jpg");
     backm = loadImage("back.jpg");
@@ -52,6 +58,7 @@ function keyPressed() {
 
 function intro() {
 	this.setup = function() {
+        // speaking.play();
         image(closem, windowWidth/2, windowHeight/2, 500, 700);
         image(oned, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
         image(smiles, windowWidth/2 - 370, windowHeight/2 + 200, 200, 200);
@@ -68,6 +75,7 @@ function scene1() {
 	this.setup = function() {
 		createCanvas(windowWidth, windowHeight);
         background('#ece6e6');
+        // speaking.play();
         imageMode(CENTER);
         image(openm, windowWidth/2, windowHeight/2, 500, 700);
         image(twod, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
@@ -132,6 +140,7 @@ function food() {
 	this.setup = function() {
 		createCanvas(windowWidth, windowHeight);
         background('#ece6e6');
+        // speaking.play();
         imageMode(CENTER);
         image(backm, windowWidth/2, windowHeight/2, 500, 700);
         image(threed, windowWidth/2 - 570, windowHeight/2 + 20, 300, 300);
@@ -168,6 +177,8 @@ function sadend() {
 	this.setup = function() {
 		createCanvas(windowWidth, windowHeight);
         imageMode(CENTER);
+        // speaking.play();
+        // thunder.play();
         for (i = 0; i < 30; i++) {
             raining = new falling(rain, random(width), random(height));
             rains.push(raining);
@@ -192,6 +203,8 @@ function happyend() {
 	this.setup = function() {
 		createCanvas(windowWidth, windowHeight);
         imageMode(CENTER);
+        // speaking.play();
+        // fw.play();
         for (i = 0; i < 30; i++) {
             fireworks = new falling(fire, random(width), random(height));
             fires.push(fireworks);
