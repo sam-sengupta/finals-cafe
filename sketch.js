@@ -14,20 +14,20 @@ function preload() {
     // speaking = loadSound("speaking.mp3");
     // thunder = loadSound("thunder.mp3");
     // fw = loadSound("fw.mp3");
-	openm = loadImage("open.jpg");
-    closem = loadImage("close.jpg");
-    backm = loadImage("back.jpg");
-    smiles = loadImage("smile.png");
-    bigsmiles = loadImage("bigsmile.png");
-    angrys = loadImage("angry.png");
-    surprises = loadImage("surprise.png");
-    oned = loadImage("1d.png");
-    twod = loadImage("2d.png");
-    threed = loadImage("3d.png");
-    threead = loadImage("3ad.png");
-    threebd = loadImage("3bd.png");
-    rain = loadImage("rain.gif");
-    fire = loadImage("fire.gif");
+	openm = loadImage("images/open.jpg");
+    closem = loadImage("images/close.jpg");
+    backm = loadImage("images/back.jpg");
+    smiles = loadImage("images/smile.png");
+    bigsmiles = loadImage("images/bigsmile.png");
+    angrys = loadImage("images/angry.png");
+    surprises = loadImage("images/surprise.png");
+    oned = loadImage("images/1d.png");
+    twod = loadImage("images/2d.png");
+    threed = loadImage("images/3d.png");
+    threead = loadImage("images/3ad.png");
+    threebd = loadImage("images/3bd.png");
+    rain = loadImage("images/rain.gif");
+    fire = loadImage("images/fire.gif");
 }
 
 function setup() {
